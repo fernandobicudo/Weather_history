@@ -13,10 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.fernando.teste_com_fab.R;
 import com.fernando.teste_com_fab.Weather;
-
 import org.w3c.dom.Text;
 
 import java.io.IOException;
@@ -32,52 +30,16 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class CityArrayAdapter extends ArrayAdapter<TextView> {
+public class CityArrayAdapter extends ArrayAdapter<String> {
 
-    private class ViewHolder{
+    private class ViewHolder {
 
-        public ImageView conditionImageView;
-        public TextView dayTextView;
-        public TextView lowTextView;
-        public TextView highTextView;
-        public TextView humidityTextView;
+        public TextView cityTextView;
     }
 
-    private Map<String, Bitmap> figuras = new HashMap<
-            >();
 
-    CityArrayAdapter(Context context, List<T> previsoes) {
-        super(context, -1, previsoes);
-    }
-
-    private class LoadImageTask extends AsyncTask<String, Void, Bitmap> {
-
-        private ImageView conditionImageView;String iconURL;
-
-        public LoadImageTask (String iconURL, ImageView conditionImageView) {
-            this.conditionImageView = conditionImageView;
-            this.iconURL = iconURL;
-        }
-        @Override
-        protected void onPostExecute(Bitmap bitmap){
-            conditionImageView.setImageBitmap(bitmap);
-            figuras.put(this.iconURL, bitmap);
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... strings){
-            try {
-                URL url = new URL(strings[0]);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                InputStream is = conn.getInputStream();
-                Bitmap figura = BitmapFactory.decodeStream(is);
-                return figura;
-            }
-            catch  (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
+    CityArrayAdapter(Context context, List<String> cidades) {
+        super(context, -1, cidades); //QUE PORRA É ESSA?????????????????????????????????????????????????????????
     }
 
     @NonNull
@@ -87,50 +49,19 @@ public class CityArrayAdapter extends ArrayAdapter<TextView> {
         ViewHolder vh = null;
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.list_item, parent, false);
-
+            convertView = inflater.inflate(R.layout.list_city, parent, false);
             vh = new ViewHolder();
-            vh.dayTextView = convertView.findViewById(R.id.dayTextView);
-            vh.lowTextView = convertView.findViewById(R.id.lowTextView);
-            vh.highTextView = convertView.findViewById(R.id.highTextView);
-            vh.humidityTextView = convertView.findViewById(R.id.humidityTextView);
-            vh.conditionImageView = convertView.findViewById(R.id.conditionImageView);
+            vh.cityTextView = convertView.findViewById(R.id.cityTextView);
 
             convertView.setTag(vh);
-        }
-        else
+        } else
             //downcasting
             vh = (ViewHolder) convertView.getTag();
 
 
-        Weather caraDaVez = getItem(position);
+        String cidade = getItem(position);
 
-//        TextView dayTextView = convertView.findViewById(R.id.dayTextView);
-//
-//        TextView lowTextView = convertView.findViewById(R.id.lowTextView);
-//
-//        TextView highTextView = convertView.findViewById(R.id.highTextView);
-//
-//        TextView humidityTextView = convertView.findViewById(R.id.humidityTextView);
-//        ImageView conditionImageView = convertView.findViewById(R.id.conditionImageView);
-
-        if (figuras.containsKey(caraDaVez.iconURL)) {
-
-            vh.conditionImageView.setImageBitmap(figuras.get(caraDaVez.iconURL));
-
-        }
-        else {
-
-            new LoadImageTask(caraDaVez.iconURL, vh.conditionImageView).execute(caraDaVez.iconURL);
-        }
-
-        vh.dayTextView.setText(getContext().getString(R.string.day_description, caraDaVez.dayOfWeek, caraDaVez.description));
-
-        vh.lowTextView.setText(getContext().getString(R.string.low_temp, caraDaVez.minTemp));
-
-        vh.highTextView.setText(getContext().getString(R.string.high_temp, caraDaVez.maxTemp));
-
-        vh.humidityTextView.setText(getContext().getString(R.string.humidity, caraDaVez.humidity));
+        vh.cityTextView.setText(cidade);
 
         return convertView;
     }

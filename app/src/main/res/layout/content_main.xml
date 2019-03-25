@@ -24,7 +24,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <ListView
-        android:id="@+id/weatherListView"
+        android:id="@+id/cityListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>

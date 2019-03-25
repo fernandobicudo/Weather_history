@@ -6,31 +6,19 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.fernando.teste_com_fab.R;
-import com.fernando.teste_com_fab.Weather;
-
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.MalformedParameterizedTypeException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class WeatherArrayAdapter extends ArrayAdapter<Weather> {
 
@@ -87,7 +75,7 @@ public class WeatherArrayAdapter extends ArrayAdapter<Weather> {
         ViewHolder vh = null;
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.list_item, parent, false);
+            convertView = inflater.inflate(R.layout.list_weather, parent, false);
 
             vh = new ViewHolder();
             vh.dayTextView = convertView.findViewById(R.id.dayTextView);
