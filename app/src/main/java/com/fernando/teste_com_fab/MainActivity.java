@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+
     private void addCity(String city) {
         cityList.add(city);
         locationEditText.setText("");

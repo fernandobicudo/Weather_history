@@ -1,10 +1,12 @@
 package com.fernando.teste_com_fab;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -29,7 +31,6 @@ public class WeatherActivity extends AppCompatActivity {
     private WeatherArrayAdapter weatherAdapter;
     private List<Weather> weatherList = new ArrayList<>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,18 @@ public class WeatherActivity extends AppCompatActivity {
 
         new GetWeatherTask().execute(endereco);
 
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener((v)->{//expressão lambda substituindo o código original
+
+            mainActivity(v);
+        });
+
+    }
+
+    private void mainActivity(View view) {
+        Intent intent = new Intent(WeatherActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private class GetWeatherTask extends AsyncTask<String, Void, String> {
