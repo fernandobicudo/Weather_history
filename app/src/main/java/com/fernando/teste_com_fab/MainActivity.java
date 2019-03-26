@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView cityTextView;
     private String city;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +41,8 @@ public class MainActivity extends AppCompatActivity {
         cityAdapter = new CityArrayAdapter(this, cityList);
         cityListView.setAdapter(cityAdapter);
 
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener((v) -> {//expressão lambda substituindo o código original
-
 
             String city = locationEditText.getEditableText().toString();
 
@@ -55,21 +52,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-
     private void addCity(String city) {
         cityList.add(city);
         locationEditText.setText("");
         cityAdapter.notifyDataSetChanged();
     }
 
-
     public void weatherActivity(View v) {
 
         cityTextView = findViewById(R.id.cityTextView);
 
         Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
-        city = this.cityTextView.getText().toString();
+        city =  this.cityTextView.getText().toString();
         intent.putExtra("Value", city);
         startActivity(intent);
         finish();

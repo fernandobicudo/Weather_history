@@ -1,6 +1,7 @@
 package com.fernando.teste_com_fab;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fernando.teste_com_fab.R;
@@ -63,6 +65,26 @@ public class CityArrayAdapter extends ArrayAdapter<String> {
         String cidade = getItem(position);
 
         vh.cityTextView.setText(cidade);
+
+        vh.cityTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), WeatherActivity.class);
+                intent.putExtra("Value", cidade);
+                v.getContext().startActivity(intent);
+            }
+        });
+
+        vh.cityTextView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+/********************************************************************
+                //ENCONTRAR MANEIRA DE REMOVER TEXTVIEW ESPECÍFICO
+ /*******************************************************************/
+
+                return false;
+            }
+        });
 
         return convertView;
     }
