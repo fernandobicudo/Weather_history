@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -22,7 +23,7 @@ import java.util.Map;
 
 public class WeatherArrayAdapter extends ArrayAdapter<Weather> {
 
-    private class ViewHolder{
+    private class ViewHolder {
 
         public ImageView conditionImageView;
         public TextView dayTextView;
@@ -40,28 +41,29 @@ public class WeatherArrayAdapter extends ArrayAdapter<Weather> {
 
     private class LoadImageTask extends AsyncTask<String, Void, Bitmap> {
 
-        private ImageView conditionImageView;String iconURL;
+        private ImageView conditionImageView;
+        String iconURL;
 
-        public LoadImageTask (String iconURL, ImageView conditionImageView) {
+        public LoadImageTask(String iconURL, ImageView conditionImageView) {
             this.conditionImageView = conditionImageView;
             this.iconURL = iconURL;
         }
+
         @Override
-        protected void onPostExecute(Bitmap bitmap){
+        protected void onPostExecute(Bitmap bitmap) {
             conditionImageView.setImageBitmap(bitmap);
             figuras.put(this.iconURL, bitmap);
         }
 
         @Override
-        protected Bitmap doInBackground(String... strings){
+        protected Bitmap doInBackground(String... strings) {
             try {
                 URL url = new URL(strings[0]);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 InputStream is = conn.getInputStream();
                 Bitmap figura = BitmapFactory.decodeStream(is);
                 return figura;
-            }
-            catch  (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             return null;
@@ -85,8 +87,7 @@ public class WeatherArrayAdapter extends ArrayAdapter<Weather> {
             vh.conditionImageView = convertView.findViewById(R.id.conditionImageView);
 
             convertView.setTag(vh);
-        }
-        else
+        } else
             //downcasting
             vh = (ViewHolder) convertView.getTag();
 
@@ -106,8 +107,7 @@ public class WeatherArrayAdapter extends ArrayAdapter<Weather> {
 
             vh.conditionImageView.setImageBitmap(figuras.get(caraDaVez.iconURL));
 
-        }
-        else {
+        } else {
 
             new LoadImageTask(caraDaVez.iconURL, vh.conditionImageView).execute(caraDaVez.iconURL);
         }

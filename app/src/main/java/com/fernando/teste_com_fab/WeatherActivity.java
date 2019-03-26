@@ -47,29 +47,29 @@ public class WeatherActivity extends AppCompatActivity {
 
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener((v)->{//expressão lambda substituindo o código original
-            String city = getIntent().getExtras().getString("Value");
-            String endereco = getString(R.string.web_service_url, getString(R.string.desc_language), city, getString(R.string.api_key),
-                    getString(R.string.measurement_unit));
+        String city = getIntent().getExtras().getString("Value");
+        String endereco = getString(R.string.web_service_url, getString(R.string.desc_language), city, getString(R.string.api_key),
+                getString(R.string.measurement_unit));
 
-            new GetWeatherTask().execute(endereco);
+        new GetWeatherTask().execute(endereco);
 
     }
 
-    private class GetWeatherTask extends AsyncTask <String, Void, String> {
+    private class GetWeatherTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... enderecos) {
             String endereco = enderecos[0];
             try {
                 URL url = new URL(endereco);
-                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 InputStream is = conn.getInputStream();
                 InputStreamReader isr = new InputStreamReader(is);
                 BufferedReader reader = new BufferedReader(isr);
                 String linha = null;
                 StringBuilder resultado = new StringBuilder("");
 
-                while ((linha = reader.readLine()) !=null) {
+                while ((linha = reader.readLine()) != null) {
                     resultado.append(linha);
                 }
                 JSONObject jsonInteiro = new JSONObject((resultado.toString()));
@@ -80,7 +80,8 @@ public class WeatherActivity extends AppCompatActivity {
                 JSONArray list = jsonInteiro.getJSONArray("list");
 
                 weatherList.clear();
-                runOnUiThread(()->{ weatherAdapter.notifyDataSetChanged();
+                runOnUiThread(() -> {
+                    weatherAdapter.notifyDataSetChanged();
                     Toast.makeText(WeatherActivity.this, getString(R.string.new_search_started),
                             Toast.LENGTH_SHORT).show();
 

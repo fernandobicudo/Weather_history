@@ -63,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void weatherActivity(View v) {
+
+        cityTextView = findViewById(R.id.cityTextView);
+
         Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
         city = this.cityTextView.getText().toString();
         intent.putExtra("Value", city);

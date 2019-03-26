@@ -13,8 +13,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.fernando.teste_com_fab.R;
 import com.fernando.teste_com_fab.Weather;
+
 import org.w3c.dom.Text;
 
 import java.io.IOException;
@@ -57,7 +59,6 @@ public class CityArrayAdapter extends ArrayAdapter<String> {
         } else
             //downcasting
             vh = (ViewHolder) convertView.getTag();
-
 
         String cidade = getItem(position);
 
