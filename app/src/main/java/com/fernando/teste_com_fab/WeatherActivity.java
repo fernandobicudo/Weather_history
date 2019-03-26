@@ -33,7 +33,7 @@ public class WeatherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_weather);
+        setContentView(R.layout.weather_content);
 
         weatherListView = findViewById(R.id.weatherListView);
         weatherList = new ArrayList<>();
@@ -42,17 +42,17 @@ public class WeatherActivity extends AppCompatActivity {
 
         //ctrl q exibe documentação sobre os comandos;
 
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener((v)->{//expressão lambda substituindo o código original
-            String city = "Itu";//getIntent().getExtras().getString("Value");
+            String city = getIntent().getExtras().getString("Value");
             String endereco = getString(R.string.web_service_url, getString(R.string.desc_language), city, getString(R.string.api_key),
                     getString(R.string.measurement_unit));
 
             new GetWeatherTask().execute(endereco);
-//        });
+
     }
 
     private class GetWeatherTask extends AsyncTask <String, Void, String> {

@@ -24,6 +24,4 @@
 
     <include layout="@layout/weather_list_view" />
 
-
-
 </android.support.design.widget.CoordinatorLayout>

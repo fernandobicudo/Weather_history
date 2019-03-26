@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,12 +46,12 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener((v) -> {//expressão lambda substituindo o código original
 
-            weatherActivity(v);
-            //            String city = locationEditText.getEditableText().toString();
-//
-//            if (city.length() > 2) {
-//                addCity(city);
-            //}
+
+            String city = locationEditText.getEditableText().toString();
+
+            if (city.length() > 2) {
+                addCity(city);
+            }
         });
     }
 
@@ -62,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void weatherActivity(View v) {
         Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
-        //city = cityTextView.getText().toString();
-        intent.putExtra("city", "Itu");
+        city = this.cityTextView.getText().toString();
+        intent.putExtra("Value", city);
         startActivity(intent);
         finish();
     }
