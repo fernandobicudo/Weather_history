@@ -9,13 +9,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.fernando.teste_com_fab.MainActivity;
-import com.fernando.teste_com_fab.R;
-import com.fernando.teste_com_fab.Weather;
-import com.fernando.teste_com_fab.WeatherArrayAdapter;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,15 +25,15 @@ import java.util.List;
 
 public class WeatherActivity extends AppCompatActivity {
 
-    private EditText locationEditText;
     private ListView weatherListView;
     private WeatherArrayAdapter weatherAdapter;
     private List<Weather> weatherList = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.list_weather);
 
         weatherListView = findViewById(R.id.weatherListView);
         weatherList = new ArrayList<>();
@@ -49,18 +42,17 @@ public class WeatherActivity extends AppCompatActivity {
 
         //ctrl q exibe documentação sobre os comandos;
 
-        locationEditText = findViewById(R.id.locationEditText);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener((v)->{//expressão lambda substituindo o código original
-            String cidade = locationEditText.getEditableText().toString();
-            String endereco = getString(R.string.web_service_url, getString(R.string.desc_language), cidade, getString(R.string.api_key),
+//        FloatingActionButton fab = findViewById(R.id.fab);
+//        fab.setOnClickListener((v)->{//expressão lambda substituindo o código original
+            String city = "Itu";//getIntent().getExtras().getString("Value");
+            String endereco = getString(R.string.web_service_url, getString(R.string.desc_language), city, getString(R.string.api_key),
                     getString(R.string.measurement_unit));
 
             new GetWeatherTask().execute(endereco);
-        });
+//        });
     }
 
     private class GetWeatherTask extends AsyncTask <String, Void, String> {
