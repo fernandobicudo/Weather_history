@@ -68,6 +68,7 @@ public class WeatherActivity extends AppCompatActivity {
         finish();
     }
 
+
     private class GetWeatherTask extends AsyncTask<String, Void, String> {
 
         @Override

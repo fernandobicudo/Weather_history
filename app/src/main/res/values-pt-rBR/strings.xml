@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Configurações</string>
+    <string name="hint_text">Digite a cidade</string>
+    <string name="invalid_url">URL inválida</string>
+    <string name="weather_condition_image">Representação gráfica das condições climáticas</string>
+    <string name="high_temp">Max: %s</string>
+    <string name="low_temp">Min: %s</string>
+    <string name="humidity">Umidade: %s</string>
+    <string name="read_error">Não foi possível acessar os dados</string>
+    <string name="connect_error">Não foi possível se conectar ao servidor</string>
+    <string name="desc_language">pt</string>
+    <string name="new_search_started">Novo item de busca</string>
+    <string name="measurement_unit">metric</string>
+</resources>

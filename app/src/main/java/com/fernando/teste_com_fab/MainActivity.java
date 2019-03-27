@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         cityAdapter = new CityArrayAdapter(this, cityList);
         cityListView.setAdapter(cityAdapter);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener((v) -> {//expressão lambda substituindo o código original
 
