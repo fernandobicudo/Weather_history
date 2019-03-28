@@ -75,17 +75,9 @@ public class CityArrayAdapter extends ArrayAdapter<String> {
             }
         });
 
-        vh.cityTextView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-/********************************************************************
-                //ENCONTRAR MANEIRA DE REMOVER TEXTVIEW ESPECÍFICO
- /*******************************************************************/
-
-                return false;
-            }
-        });
 
         return convertView;
     }
+
+
 }

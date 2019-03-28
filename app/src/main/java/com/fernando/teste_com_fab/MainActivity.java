@@ -61,16 +61,18 @@ public class MainActivity extends AppCompatActivity {
         cityAdapter.notifyDataSetChanged();
     }
 
-    public void weatherActivity(View v) {
+//    public void weatherActivity(View v) {
+//
+//        cityTextView = findViewById(R.id.cityTextView);
+//
+//        Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
+//        city =  this.cityTextView.getText().toString();
+//        intent.putExtra("Value", city);
+//        startActivity(intent);
+//        finish();
+//    }
 
-        cityTextView = findViewById(R.id.cityTextView);
 
-        Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
-        city =  this.cityTextView.getText().toString();
-        intent.putExtra("Value", city);
-        startActivity(intent);
-        finish();
-    }
 }
 //Pendências
 //OK 1- não pode deixar criar uma TextView se campo estiver vazio

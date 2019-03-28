@@ -46,27 +46,14 @@ public class WeatherActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener((v)->{//expressão lambda substituindo o código original
         String city = getIntent().getExtras().getString("Value");
         String endereco = getString(R.string.web_service_url, getString(R.string.desc_language), city, getString(R.string.api_key),
                 getString(R.string.measurement_unit));
 
         new GetWeatherTask().execute(endereco);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener((v)->{//expressão lambda substituindo o código original
-
-            mainActivity(v);
-        });
-
     }
 
-    private void mainActivity(View view) {
-        Intent intent = new Intent(WeatherActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
 
 
     private class GetWeatherTask extends AsyncTask<String, Void, String> {
